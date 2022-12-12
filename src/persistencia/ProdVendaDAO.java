@@ -31,6 +31,7 @@ public class ProdVendaDAO {
     private final String SOMA = "SELECT SUM(\"qtd\") FROM \"ProdVenda\" WHERE \"codProd\"=?";
     
   	//@ requires 0 <= codProd;
+    //@ assignable \nothing;
     public /*@ pure @*/ int buscarProduto(int codProd){
         int qtd = 0;
         try {
@@ -49,6 +50,7 @@ public class ProdVendaDAO {
     }
 
     //@ requires 0 <= codVenda;
+    //@ assignable \nothing;
     public /*@ pure @*/ ProdVenda buscarCodVenda(int codVenda){
             ProdVenda pv = null;
         try {
@@ -69,6 +71,7 @@ public class ProdVendaDAO {
     
     //@ requires 0 <= codProd;
     //@ requires 0 <= codVenda;
+    //@ assignable \nothing;
     public /*@ pure @*/ ProdVenda buscar(int codVenda, int codProd){
         ProdVenda pv = null;
         try {

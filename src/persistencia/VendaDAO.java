@@ -34,7 +34,8 @@ public class VendaDAO {
     //@ requires CPF.length() == 14;
     //@ requires CPF.contains(".") == true;
     //@ requires CPF.contains("-") == true;
-    //@ ensures 0 < \result;	
+    //@ ensures 0 < \result;
+    //@ assignable \nothing;
     public /*@ pure @*/ int buscarVendedor(String CPF){
         int qtd = 0;
         try {
@@ -55,6 +56,7 @@ public class VendaDAO {
     //@ requires CPF.length() == 14;
     //@ requires CPF.contains(".") == true;
     //@ requires CPF.contains("-") == true;
+    //@ assignable \nothing;
     public /*@ pure @*/ ArrayList<Venda> buscarVendedor2(String CPF){
         ArrayList<Venda> relVenda = new ArrayList<Venda>();
         try {
@@ -75,6 +77,7 @@ public class VendaDAO {
     }
     
     //@ requires 0 <= codVenda;
+    //@ assignable \nothing;
     public /*@ pure @*/ Venda buscarCodVenda(int codVenda){
         Venda ve = null;
         try {

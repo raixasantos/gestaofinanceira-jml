@@ -31,6 +31,7 @@ public class VendedorDAO {
     //@ requires CPF.length() == 14;
     //@ requires CPF.contains(".") == true;
     //@ requires CPF.contains("-") == true;
+    //@ assignable \nothing;
     public /*@ pure @*/ Vendedor buscarCPF(String CPF){
         Vendedor v = null;
         try {

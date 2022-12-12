@@ -17,7 +17,7 @@ import persistencia.*;
  */
 
 public class Principal {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         
         VendedorDAO vDAO = new VendedorDAO();
         Vendedor v = null;
@@ -46,7 +46,7 @@ public class Principal {
 
         Scanner scan = new Scanner(System.in);
         
-        int op, op2, op3, op4, flag, flag2, flag3, flag4, codProd, qtd, novaQtd, codVenda, maior;
+        int op, op2, op3, op4, flag, flag2, flag3, flag4, codProd, qtd, novaQtd, codVenda, maior, desconto;
         String CPF, nome, email, telefone, descricao, data, hora;
         float preco, custoPart, total;
         boolean a;
@@ -299,7 +299,9 @@ public class Principal {
                                         qtd = scan.nextInt();
                                         System.out.println("Digite o custo particionado: ");
                                         custoPart = scan.nextFloat();
-                                        p = new Produto(codProd, preco, descricao, qtd, custoPart);
+                                        System.out.println("Digite o desconto disponível: ");
+                                        desconto = scan.nextInt();
+                                        p = new Produto(codProd, preco, descricao, qtd, custoPart, desconto);
                                         pDAO.inserir(p);
                                     }else{
                                         flag = 0;
@@ -422,6 +424,7 @@ public class Principal {
                                     System.out.println("Preço: "+p.getPreco());
                                     System.out.println("Quantidade: "+p.getQtd());
                                     System.out.println("Custo Particionado: "+p.getCustoPart());
+                                    System.out.println("Desconto disponível: "+p.getDesconto(p.getDescontoGanho()));                                    
                                     break;
                                 }else{
                                     System.out.println("Produto não cadastrado!");

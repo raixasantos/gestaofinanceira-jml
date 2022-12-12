@@ -9,89 +9,107 @@ package dominio;
  *
  * @author diego
  */
-public class Venda {
-    private /*@ spec_public nullable @*/ int codVenda;
-    private /*@ spec_public nullable @*/ String CPF;
-    private /*@ spec_public nullable @*/ String data;
-    private /*@ spec_public nullable @*/ String hora;
+public class Venda implements IVenda {
+    private /*@ spec_public @*/ int _codVenda = 0; //@ in codVenda;
+    private /*@ spec_public nullable @*/ String _CPF; 	//@ in CPF;
+    private /*@ spec_public nullable @*/ String _data;	//@ in data;
+    private /*@ spec_public nullable @*/ String _hora;	//@ in hora;
     
-    //@ requires 0 <= codVenda;
-    //@ requires CPF.length() == 14;
-    //@ requires CPF.contains(".") == true;
-    //@ requires CPF.contains("-") == true;
-    //@ requires data.length() == 10;
-    //@ requires data.contains("/") == true;
-    //@ requires hora.length() == 5;
-    //@ requires hora.contains(":") == true;
-    public Venda(int codVenda, String CPF, String data, String hora) {
-        this.codVenda = codVenda;
-        this.CPF = CPF;
-        this.data = data;
-        this.hora = hora;
+    /*@ public invariant 0 <= _codVenda;
+    @*/
+    
+    /*@ protected represents
+	@ 	codVenda <- _codVenda;
+	@*/
+    
+    /*@ protected represents
+	@ 	CPF <- _CPF;
+	@*/
+    
+    /*@ protected represents
+	@ 	data <- _data;
+	@*/
+    
+    /*@ protected represents
+	@ 	hora <- _hora;
+	@*/
+    
+    //@ requires 0 <= codVend;
+    //@ requires CPF_.length() == 14;
+    //@ requires CPF_.contains(".") == true;
+    //@ requires CPF_.contains("-") == true;
+    //@ requires dat.length() == 10;
+    //@ requires dat.contains("/") == true;
+    //@ requires hor.length() == 5;
+    //@ requires hor.contains(":") == true;
+    public Venda(int codVend, String CPF_, String dat, String hor) {
+        this._codVenda = codVend;
+        this._CPF = CPF_;
+        this._data = dat;
+        this._hora = hor;
     }
     
     public Venda() {
       
     }
+    
+    //@ public initially 0 <= _codVenda;
 
     public /*@ pure @*/ int getCodVenda() {
-        return codVenda;
+        return _codVenda;
     }
-
-    //@ requires 0 <= codVenda;
-    //@ assignable this.codVenda;
-    //@ ensures this.codVenda == codVenda;
-    public void setCodVenda(int codVenda) {
-        this.codVenda = codVenda;
+    
+    //@ also
+    //@ 	requires 0 <= codVend;
+    //@ 	assignable codVenda;
+    //@ 	ensures codVenda == codVend;
+    public void setCodVenda(int codVend) {
+        this._codVenda = codVend;
     }
 
     public /*@ pure @*/ String getCPF() {
-        return CPF;
+        return _CPF;
     }
 
-    /**
-     * @param CPF the CPF to set
-     *
-     *@ requires CPF.length() == 14;
-     *@ requires CPF.contains(".") == true;
-     *@ requires CPF.contains("-") == true;
-     *@ assignable this.CPF;
-     *@ ensures this.CPF.equals(CPF) == true;
-     *@
-     **/    
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
+    /*@ also
+     @ 	requires CPF_.length() == 14;
+     @ 	requires CPF_.contains(".") == true;
+     @ 	requires CPF_.contains("-") == true;
+     @ 	assignable CPF;
+     @ 	ensures CPF.equals(CPF_);
+     @*/    
+    public void setCPF(String CPF_) {
+        this._CPF = CPF_;
     }
 
     public /*@ pure @*/ String getData() {
-        return data;
+        return _data;
     }
 
-    /**
-     *@ requires data.length() == 10;
-     *@ requires data.contains("/") == true;
-     *@ assignable this.data;
-     *@ ensures this.data.equals(data) == true;
-     *@
+    /*@ also
+     @ requires d.length() == 10;
+     @ requires d.contains("/") == true;
+     @ assignable data;
+     @ ensures data.equals(d);
+     @
      */ 
-    public void setData(String data) {
-        this.data = data;
+    public void setData(String d) {
+        this._data = d;
     }
 
     public /*@ pure @*/ String getHora() {
-        return hora;
+        return _hora;
     }
 
 
-    /**
-     *@ requires hora.length() == 5;
-     *@ requires hora.contains(":") == true;
-     *@ assignable this.hora;
-     *@ ensures this.hora.equals(hora) == true;
-     *@
-     */ 
-    public void setHora(String hora) {
-        this.hora = hora;
+    /*@ also
+     @ 	requires h.length() == 5;
+     @ 	requires h.contains(":") == true;
+     @ 	assignable hora;
+     @ 	ensures hora.equals(h);
+     @*/ 
+    public void setHora(String h) {
+        this._hora = h;
     }
     
 }

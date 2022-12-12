@@ -30,6 +30,7 @@ public class ProdutoDAO {
     private final String EXCLUIR = "DELETE FROM \"Produto\" WHERE \"codProd\"=?";
     
     //@ requires 0 <= codProd;
+    //@ assignable \nothing;
     public /*@ pure @*/ Produto buscar(int codProd){
         Produto p = null;
         try {

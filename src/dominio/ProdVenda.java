@@ -10,9 +10,13 @@ package dominio;
  * @author diego
  */
 public class ProdVenda {
-    private /*@ spec_public nullable @*/ int codProd;
-    private /*@ spec_public nullable @*/ int codVenda;
+    private /*@ spec_public @*/ int codProd = 0;
+    private /*@ spec_public @*/ int codVenda = 0;
     private /*@ spec_public nullable @*/ int qtd;
+    
+    /*@ public invariant 0 <= codProd;
+    @ public invariant 0 <= codVenda;
+    @*/
     
     //@ requires 0 <= codProd;
     //@ requires 0 <= codVenda;
@@ -25,6 +29,9 @@ public class ProdVenda {
     public ProdVenda(){
         
     }
+    
+    //@ public initially 0 <= codProd;
+    //@ public initially 0 <= codVenda;
 
     public /*@ pure @*/ int getCodProd() {
         return codProd;
