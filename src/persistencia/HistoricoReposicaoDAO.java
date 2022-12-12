@@ -1,4 +1,4 @@
-/*
+/* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -27,14 +27,12 @@ public class HistoricoReposicaoDAO {
     private final String RELATORIO = "SELECT * FROM \"HistoricoReposicao\"";
     private final String EXCLUIR = "DELETE FROM \"HistoricoReposicao\" WHERE (\"codProd\"=? AND \"data\"=?)";
     
-    /**
-     *@ requires 0 <= codProd;
-     *@ requires data.length() == 10;
-     *@ requires data.contains("/") == true;
-     *@ assignable \nothing;
-     *@ ensures \result == this.data.equals(data) == true;
-     */
-    public HistoricoReposicao buscar(int codProd, String data){
+    
+    //@ requires 0 <= codProd;
+    //@ requires 10 == data.length();
+    //@ requires data.contains("/") == true;
+    //@ assignable \nothing;
+    public /*@ pure @*/ HistoricoReposicao buscar(int codProd, String data){
         HistoricoReposicao hr = null;
         try { 
             con.conectar();
@@ -48,12 +46,16 @@ public class HistoricoReposicaoDAO {
             }
             con.desconectar();
         } catch (Exception e) {
-            System.out.println("Erro ao buscar Reposição no banco de dados! "+e.getMessage());
+            System.out.println("Erro ao buscar ReposiÃ§Ã£o no banco de dados! "+e.getMessage());
             e.printStackTrace();
         }
         return hr;
     }
     
+    //@ requires hr.getData().length() == 10;
+    //@ requires hr.getData().contains("/") == true;
+    //@ requires 0 <= hr.getCodProd();
+    //@ requires 0 < hr.getQtd();
     public void inserir(HistoricoReposicao hr){
         try {
             con.conectar();
@@ -62,14 +64,18 @@ public class HistoricoReposicaoDAO {
             inserir.setInt(2, hr.getCodProd());
             inserir.setInt(3, hr.getQtd());
             inserir.execute();
-            System.out.println("Reposição inserida com sucesso!");
+            System.out.println("ReposiÃ§Ã£o inserida com sucesso!");
             con.desconectar();
         } catch (Exception e) {
-            System.out.println("Erro ao inserir Reposição no banco de dados! "+e.getMessage());
+            System.out.println("Erro ao inserir ReposiÃ§Ã£o no banco de dados! "+e.getMessage());
             e.printStackTrace();
         }
     }
     
+    //@ requires 0 < qtd;
+    //@ requires data.length() == 10;
+    //@ requires data.contains("/") == true;
+    //@ requires 0 <= codProd;
     public void alterarQtd(int qtd, String data, int codProd){
         try {
             con.conectar();
@@ -85,6 +91,11 @@ public class HistoricoReposicaoDAO {
             e.printStackTrace();
         }
     }
+    
+    //@ requires 0 <= novoCodProd;
+    //@ requires data.length() == 10;
+    //@ requires data.contains("/") == true;
+    //@ requires 0 <= codProd;
     public void alterarCodProd(int novoCodProd, String data, int codProd){
         try {
             con.conectar();
@@ -96,10 +107,16 @@ public class HistoricoReposicaoDAO {
             System.out.println("Codigo do produto alterado com sucesso!");
             con.desconectar();
         } catch (Exception e) {
-            System.out.println("Erro ao alterar código do produto reposto no banco de dados! "+e.getMessage());
+            System.out.println("Erro ao alterar cÃ³digo do produto reposto no banco de dados! "+e.getMessage());
             e.printStackTrace();
         }
     }
+    
+    //@ requires novaData.length() == 10;
+    //@ requires novaData.contains("/") == true;
+    //@ requires data.length() == 10;
+    //@ requires data.contains("/") == true;
+    //@ requires 0 <= codProd;
     public void alterarData(String novaData, String data, int codProd){
         try {
             con.conectar();
@@ -111,12 +128,12 @@ public class HistoricoReposicaoDAO {
             System.out.println("Data alterada com sucesso!");
             con.desconectar();
         } catch (Exception e) {
-            System.out.println("Erro ao alterar data da reposição no banco de dados! "+e.getMessage());
+            System.out.println("Erro ao alterar data da reposiÃ§Ã£o no banco de dados! "+e.getMessage());
             e.printStackTrace();
         }
     }
     
-    public ArrayList<HistoricoReposicao> relatorio(){
+	public /*@ pure @*/ ArrayList<HistoricoReposicao> relatorio(){
         ArrayList relHist = new ArrayList();
         try {
             con.conectar();
@@ -125,16 +142,19 @@ public class HistoricoReposicaoDAO {
             while (rsRelatorio.next()) {
                 HistoricoReposicao hr = new HistoricoReposicao(rsRelatorio.getString("data"),
                         rsRelatorio.getInt("codProd"), rsRelatorio.getInt("qtd"));
-		relHist.add(hr); 
+                relHist.add(hr);
             }
             con.desconectar();
         } catch (Exception e) {
-            System.out.println("Erro ao emitir relatório de Reposição: "+e.getMessage());
+            System.out.println("Erro ao emitir relatÃ³rio de ReposiÃ§Ã£o: "+e.getMessage());
             e.printStackTrace();
         }
         return relHist;
     }
     
+    //@ requires 0 <= codProd;
+    //@ requires data.length() == 10;
+    //@ requires data.contains("/") == true;
     public void excluir(int codProd, String data){
         try {
             con.conectar();
@@ -142,10 +162,10 @@ public class HistoricoReposicaoDAO {
             excluir.setInt(1, codProd);
             excluir.setString(2, data);
             excluir.execute();
-            System.out.println("Reposição excluida com sucesso!");
+            System.out.println("ReposiÃ§Ã£o excluida com sucesso!");
             con.desconectar();
         } catch (Exception e) {
-            System.out.println("Erro ao excluir Reposição no banco de dados: "+e.getMessage());
+            System.out.println("Erro ao excluir ReposiÃ§Ã£o no banco de dados: "+e.getMessage());
             e.printStackTrace();
         }
     }

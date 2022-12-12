@@ -30,11 +30,9 @@ public class ProdVenda {
         return codProd;
     }
 
-    /**
-     *@ requires 0 <= codProd;
-     *@ assignable this.codProd;
-     *@ ensures this.codProd == codProd;
-     */ 
+    //@ requires 0 <= codProd;
+    //@ assignable this.codProd;
+    //@ ensures this.codProd == codProd;
     public void setCodProd(int codProd) {
         this.codProd = codProd;
     }
@@ -43,11 +41,9 @@ public class ProdVenda {
         return codVenda;
     }
 
-    /**
-     *@ requires 0 <= codVenda;
-     *@ assignable this.codVenda;
-     *@ ensures this.Venda == codVenda;
-     */ 
+    //@ requires 0 <= codVenda;
+    //@ assignable this.codVenda;
+    //@ ensures this.codVenda == codVenda;
     public void setCodVenda(int codVenda) {
         this.codVenda = codVenda;
     }
@@ -56,11 +52,9 @@ public class ProdVenda {
         return qtd;
     }
 
-    /**
-     *@ requires 0 < qtd;
-     *@ assignable this.qtd;
-     *@ ensures this.qtd == qtd;
-     */ 
+    //@ requires 0 < qtd;
+    //@ assignable this.qtd;
+    //@ ensures this.qtd == qtd;
     public void setQtd(int qtd) {
         this.qtd = qtd;
     }

@@ -28,8 +28,10 @@ public class VendedorDAO {
     private final String ALTERAREMAIL = "UPDATE \"Vendedor\" SET \"email\"=? WHERE \"CPF\"=?";
     private final String EXCLUIR = "DELETE FROM \"Vendedor\" WHERE \"CPF\"=?";
     
-    
-    public Vendedor buscarCPF(String CPF){
+    //@ requires CPF.length() == 14;
+    //@ requires CPF.contains(".") == true;
+    //@ requires CPF.contains("-") == true;
+    public /*@ pure @*/ Vendedor buscarCPF(String CPF){
         Vendedor v = null;
         try {
             con.conectar();
@@ -47,7 +49,16 @@ public class VendedorDAO {
         }
         return v;
     }
-
+    
+    //@ requires 14 == v.getCPF().length();
+    //@ requires v.getCPF().contains(".") == true;
+    //@ requires v.getCPF().contains("-") == true;
+    //@ requires 14 == v.getTelefone().length();
+    //@ requires v.getTelefone().contains("(") == true;
+    //@ requires v.getTelefone().contains(")") == true;
+    //@ requires v.getTelefone().contains("-") == true;
+    //@ requires v.getEmail().contains("@") == true;
+    //@ requires v.getEmail().contains(".") == true;
     public void inserir(Vendedor v){
         try {
             con.conectar();
@@ -65,7 +76,7 @@ public class VendedorDAO {
         }
     }
     
-    public ArrayList<Vendedor> relatorio(){
+    public /*@ pure @*/ ArrayList<Vendedor> relatorio(){
         ArrayList<Vendedor> relVendedor = new ArrayList<Vendedor>();
         try {
             con.conectar();
@@ -84,6 +95,9 @@ public class VendedorDAO {
         return relVendedor;
     }
     
+    //@ requires CPF.length() == 14;
+    //@ requires CPF.contains(".") == true;
+    //@ requires CPF.contains("-") == true;
     public void alterarCPF(String CPF, String novo){
         try {
             con.conectar();
@@ -99,6 +113,9 @@ public class VendedorDAO {
         }
     }
     
+    //@ requires CPF.length() == 14;
+    //@ requires CPF.contains(".") == true;
+    //@ requires CPF.contains("-") == true;
     public void alterarNome(String CPF, String novo){
         try {
             con.conectar();
@@ -113,7 +130,10 @@ public class VendedorDAO {
             e.printStackTrace();
         }
     }
-    
+
+    //@ requires CPF.length() == 14;
+    //@ requires CPF.contains(".") == true;
+    //@ requires CPF.contains("-") == true;
     public void alterarTelefone(String CPF, String novo){
         try {
             con.conectar();
@@ -128,7 +148,10 @@ public class VendedorDAO {
             e.printStackTrace();
         }
     }
-    
+
+    //@ requires CPF.length() == 14;
+    //@ requires CPF.contains(".") == true;
+    //@ requires CPF.contains("-") == true;
     public void alterarEmail(String CPF, String novo){
         try {
             con.conectar();
@@ -143,7 +166,10 @@ public class VendedorDAO {
             e.printStackTrace();
         }
     }  
-    
+
+    //@ requires CPF.length() == 14;
+    //@ requires CPF.contains(".") == true;
+    //@ requires CPF.contains("-") == true;
     public void excluir(String CPF){
         try {
             con.conectar();

@@ -30,7 +30,8 @@ public class ProdVendaDAO {
     private final String ALTERARCODVENDA = "UPDATE \"Venda\" SET \"codVenda\"=? WHERE \"codVenda\"=?";
     private final String SOMA = "SELECT SUM(\"qtd\") FROM \"ProdVenda\" WHERE \"codProd\"=?";
     
-    public int buscarProduto(int codProd){
+  	//@ requires 0 <= codProd;
+    public /*@ pure @*/ int buscarProduto(int codProd){
         int qtd = 0;
         try {
             con.conectar();
@@ -46,8 +47,9 @@ public class ProdVendaDAO {
         }
         return qtd;
     }
-    
-        public ProdVenda buscarCodVenda(int codVenda){
+
+    //@ requires 0 <= codVenda;
+    public /*@ pure @*/ ProdVenda buscarCodVenda(int codVenda){
             ProdVenda pv = null;
         try {
             con.conectar();
@@ -65,7 +67,9 @@ public class ProdVendaDAO {
         return pv;
     }
     
-    public ProdVenda buscar(int codVenda, int codProd){
+    //@ requires 0 <= codProd;
+    //@ requires 0 <= codVenda;
+    public /*@ pure @*/ ProdVenda buscar(int codVenda, int codProd){
         ProdVenda pv = null;
         try {
             con.conectar();
@@ -84,6 +88,9 @@ public class ProdVendaDAO {
         return pv;
     }
     
+    //@ requires 0 <= pv.getCodProd();
+    //@ requires 0 <= pv.getCodVenda();
+    //@ requires 0 < pv.getQtd();
     public void inserir(ProdVenda pv){
         try {
             con.conectar();
@@ -99,7 +106,10 @@ public class ProdVendaDAO {
             e.printStackTrace();
         }
     }
-    
+
+    //@ requires 0 <= pv.getCodProd();
+    //@ requires 0 <= pv.getCodVenda();
+    //@ requires 0 < pv.getQtd();
     public void excluir(ProdVenda pv){
         try {
             con.conectar();
@@ -115,8 +125,8 @@ public class ProdVendaDAO {
         }
     }
     
-        public ArrayList<ProdVenda> relatorio(){
-        ArrayList relProdVenda = new ArrayList();
+    public /*@ pure @*/ ArrayList<ProdVenda> relatorio(){
+    ArrayList relProdVenda = new ArrayList();
         try {
             con.conectar();
             PreparedStatement relatorio = con.getConexao().prepareStatement(RELATORIO);
@@ -133,7 +143,9 @@ public class ProdVendaDAO {
         return relProdVenda;
     }
  
-    public int qtdProd(int codProd){
+
+    //@ requires 0 <= codProd;
+    public /*@ pure @*/ int qtdProd(int codProd){
         int qtd = 0;
         try {
             con.conectar();
@@ -150,7 +162,9 @@ public class ProdVendaDAO {
         return qtd;
     }
     
-    public int soma(int codProd){
+
+    //@ requires 0 <= codProd;
+    public /*@ pure @*/ int soma(int codProd){
         int qtd = 0;
         try {
             con.conectar();

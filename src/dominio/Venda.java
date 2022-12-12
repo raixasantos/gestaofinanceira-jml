@@ -15,8 +15,6 @@ public class Venda {
     private /*@ spec_public nullable @*/ String data;
     private /*@ spec_public nullable @*/ String hora;
     
-    //@ public invariant 0 <= codVenda;
-    
     //@ requires 0 <= codVenda;
     //@ requires CPF.length() == 14;
     //@ requires CPF.contains(".") == true;
@@ -40,11 +38,9 @@ public class Venda {
         return codVenda;
     }
 
-    /**
-     *@ requires 0 <= codVenda;
-     *@ assignable this.codVenda;
-     *@ ensures this.codVenda == codVenda;
-     */ 
+    //@ requires 0 <= codVenda;
+    //@ assignable this.codVenda;
+    //@ ensures this.codVenda == codVenda;
     public void setCodVenda(int codVenda) {
         this.codVenda = codVenda;
     }
@@ -61,7 +57,8 @@ public class Venda {
      *@ requires CPF.contains("-") == true;
      *@ assignable this.CPF;
      *@ ensures this.CPF.equals(CPF) == true;
-     */    
+     *@
+     **/    
     public void setCPF(String CPF) {
         this.CPF = CPF;
     }
@@ -75,6 +72,7 @@ public class Venda {
      *@ requires data.contains("/") == true;
      *@ assignable this.data;
      *@ ensures this.data.equals(data) == true;
+     *@
      */ 
     public void setData(String data) {
         this.data = data;
@@ -90,6 +88,7 @@ public class Venda {
      *@ requires hora.contains(":") == true;
      *@ assignable this.hora;
      *@ ensures this.hora.equals(hora) == true;
+     *@
      */ 
     public void setHora(String hora) {
         this.hora = hora;

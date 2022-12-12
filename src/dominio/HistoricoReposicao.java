@@ -24,6 +24,14 @@ public class HistoricoReposicao {
         this.qtd = qtd;
     }
     
+    //@ requires data.length() == 10;
+    //@ requires data.contains("/") == true;
+    //@ requires 0 <= codProd;
+    public HistoricoReposicao(String data, int codProd) {
+        this.data = data;
+        this.codProd = codProd;
+    }
+    
     public HistoricoReposicao(){
         
     }
@@ -32,12 +40,10 @@ public class HistoricoReposicao {
         return data;
     }
     
-    /**
-     *@ requires data.length() == 10;
-     *@ requires data.contains("/") == true;
-     *@ assignable this.data;
-     *@ ensures this.data.equals(data) == true;
-     */ 
+    //@ requires data.length() == 10;
+    //@ requires data.contains("/") == true;
+    //@ assignable this.data;
+    //@ ensures this.data.equals(data) == true;
     public void setData(String data) {
         this.data = data;
     }
@@ -46,11 +52,9 @@ public class HistoricoReposicao {
         return codProd;
     }
 
-    /**
-     *@ requires 0 <= codProd;
-     *@ assignable this.codProd;
-     *@ ensures this.codProd == codProd;
-     */ 
+    //@ requires 0 <= codProd;
+    //@ assignable this.codProd;
+    //@ ensures this.codProd == codProd;
     public void setCodProd(int codProd) {
         this.codProd = codProd;
     }
@@ -59,11 +63,9 @@ public class HistoricoReposicao {
         return qtd;
     }
     
-    /**
-     *@ requires 0 < qtd;
-     *@ assignable this.qtd;
-     *@ ensures this.qtd == qtd;
-     */ 
+    //@ requires 0 < qtd;
+    //@ assignable this.qtd;
+    //@ ensures this.qtd == qtd;
     public void setQtd(int qtd) {
         this.qtd = qtd;
     }

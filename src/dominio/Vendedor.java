@@ -51,6 +51,7 @@ public class Vendedor {
      *@ requires CPF.contains("-") == true;
      *@ assignable this.CPF;
      *@ ensures this.CPF.equals(CPF) == true;
+     *@
      */    
     public void setCPF(String CPF) {
         this.CPF = CPF;
@@ -69,6 +70,7 @@ public class Vendedor {
      *@ requires nome.equals(null) == false;
      *@ assignable this.nome;
      *@ ensures this.nome.equals(nome) == true;
+     *@
      */ 
     public void setNome(String nome) {
         this.nome = nome;
@@ -76,7 +78,7 @@ public class Vendedor {
 
     /**
      * @return the telefone
-     */
+     */ 
     public /*@ pure @*/ String getTelefone() {
         return telefone;
     }
@@ -87,6 +89,7 @@ public class Vendedor {
      *@ requires telefone.equals(null) == false;
      *@ assignable this.telefone;
      *@ ensures this.telefone.equals(telefone) == true;
+     *@
      */ 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
@@ -98,13 +101,13 @@ public class Vendedor {
     public /*@ pure @*/ String getEmail() {
         return email;
     }
-
+    
     /**
-     * @param email the email to set
-     *
+     *@ @param email the email to set
      *@ requires email.equals(null) == false;
      *@ assignable this.email;
      *@ ensures this.email.equals(email) == true;
+     *@
      */ 
     public void setEmail(String email) {
         this.email = email;

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="aspectjml-lib/ant.jar"/>
+	<classpathentry kind="lib" path="aspectjml-lib/antlr-java-parser-1.0.17.jar"/>
+	<classpathentry kind="lib" path="aspectjml-lib/antlr.jar"/>
+	<classpathentry kind="lib" path="aspectjml-lib/antlr4-runtime-4.5.1.jar"/>
+	<classpathentry kind="lib" path="aspectjml-lib/aspectjml-release1.8.1.jar"/>
+	<classpathentry kind="lib" path="aspectjml-lib/aspectjrt.jar"/>
+	<classpathentry kind="lib" path="aspectjml-lib/aspectjtools.jar"/>
+	<classpathentry kind="lib" path="aspectjml-lib/commons-lang3-3.1.jar"/>
+	<classpathentry kind="lib" path="aspectjml-lib/GetOpt.jar"/>
+	<classpathentry kind="lib" path="aspectjml-lib/javaparser-core-3.20.2.jar"/>
+	<classpathentry kind="lib" path="aspectjml-lib/junit.jar"/>
+	<classpathentry kind="lib" path="aspectjml-lib/qdox-2.0.0.jar"/>
+	<classpathentry kind="lib" path="/home/raissasantos/Downloads/postgresql-42.5.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/diego/Downloads/postgresql-42.5.1.jar"/>
+	<classpathentry kind="lib" path="/home/neylane/Downloads/aspectjml-1.8.1_-_2021/aspectjml-1.8.1 - 2021/aspectjml-lib/aspectjml-release1.8.1.jar"/>
+	<classpathentry kind="lib" path="/home/neylane/Downloads/aspectjml-1.8.1_-_2021/aspectjml-1.8.1 - 2021/aspectjml-lib/aspectjrt.jar"/>
+	<classpathentry kind="lib" path="/home/neylane/Downloads/postgresql-42.5.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -30,8 +30,12 @@ public class VendaDAO {
     private final String ALTERARDATA = "UPDATE \"Venda\" SET \"data\"=? WHERE \"codVenda\"=?";
     private final String ALTERARHORA = "UPDATE \"Venda\" SET \"hora\"=? WHERE \"codVenda\"=?";
     private final String ALTERARCODVENDA = "UPDATE \"Venda\" SET \"codVenda\"=? WHERE \"codVenda\"=?";
-
-    public int buscarVendedor(String CPF){
+    
+    //@ requires CPF.length() == 14;
+    //@ requires CPF.contains(".") == true;
+    //@ requires CPF.contains("-") == true;
+    //@ ensures 0 < \result;	
+    public /*@ pure @*/ int buscarVendedor(String CPF){
         int qtd = 0;
         try {
             con.conectar();
@@ -48,8 +52,11 @@ public class VendaDAO {
         return qtd;
     }
     
-    public ArrayList<Venda> buscarVendedor2(String CPF){
-        ArrayList<Venda> relVenda = new ArrayList();
+    //@ requires CPF.length() == 14;
+    //@ requires CPF.contains(".") == true;
+    //@ requires CPF.contains("-") == true;
+    public /*@ pure @*/ ArrayList<Venda> buscarVendedor2(String CPF){
+        ArrayList<Venda> relVenda = new ArrayList<Venda>();
         try {
             con.conectar();
             PreparedStatement buscarVendedor = con.getConexao().prepareStatement(BUSCARVENDEDOR2); 
@@ -67,7 +74,8 @@ public class VendaDAO {
         return relVenda;
     }
     
-    public Venda buscarCodVenda(int codVenda){
+    //@ requires 0 <= codVenda;
+    public /*@ pure @*/ Venda buscarCodVenda(int codVenda){
         Venda ve = null;
         try {
             con.conectar();
@@ -85,10 +93,8 @@ public class VendaDAO {
         return ve;
     }       
         
-    
-    
-    public ArrayList<Venda> relatorio(){
-        ArrayList relVenda = new ArrayList();
+    public /*@ pure @*/ ArrayList<Venda> relatorio(){
+        ArrayList<Venda> relVenda = new ArrayList();
         try {
             con.conectar();
             PreparedStatement relatorio = con.getConexao().prepareStatement(RELATORIO);
@@ -106,6 +112,14 @@ public class VendaDAO {
         return relVenda;
     }
     
+    //@ requires 0 <= ve.getCodVenda();
+    //@ requires ve.getCPF().length() == 14;
+    //@ requires ve.getCPF().contains(".") == true;
+    //@ requires ve.getCPF().contains("-") == true;
+    //@ requires ve.getData().length() == 10;
+    //@ requires ve.getData().contains("/") == true;
+    //@ requires ve.getHora().length() == 5;
+    //@ requires ve.getHora().contains(":") == true;
     public void inserir(Venda ve){
         try {
             con.conectar();
@@ -122,6 +136,14 @@ public class VendaDAO {
         }
     }
     
+    //@ requires 0 <= ve.getCodVenda();
+    //@ requires ve.getCPF().length() == 14;
+    //@ requires ve.getCPF().contains(".") == true;
+    //@ requires ve.getCPF().contains("-") == true;
+    //@ requires ve.getData().length() == 10;
+    //@ requires ve.getData().contains("/") == true;
+    //@ requires ve.getHora().length() == 5;
+    //@ requires ve.getHora().contains(":") == true;
     public void excluir(Venda ve){
         try {
             con.conectar();
@@ -136,6 +158,10 @@ public class VendaDAO {
         }
     }
     
+    //@ requires 0 <= codVenda;
+    //@ requires CPF.length() == 14;
+    //@ requires CPF.contains(".") == true;
+    //@ requires CPF.contains("-") == true;
     public void alterarCPF(String CPF, int codVenda){
         try {
             con.conectar();
@@ -150,7 +176,10 @@ public class VendaDAO {
             e.printStackTrace();
         }
     }
-
+    
+    //@ requires 0 <= codVenda;
+    //@ requires data.length() == 10;
+    //@ requires data.contains("/") == true;
     public void alterarData(String data, int codVenda){
         try {
             con.conectar();
@@ -165,7 +194,10 @@ public class VendaDAO {
             e.printStackTrace();
         }
     }
-
+    
+    //@ requires 0 <= codVenda;
+    //@ requires hora.length() == 5;
+    //@ requires hora.contains(":") == true;
     public void alterarHora(String hora, int codVenda){
         try {
             con.conectar();
@@ -180,7 +212,9 @@ public class VendaDAO {
             e.printStackTrace();
         }
     }
-  
+    
+    //@ requires 0 <= novoCod;
+    //@ requires 0 <= codVenda;
     public void alterarCodVenda(int novoCod, int codVenda){
         try {
             con.conectar();

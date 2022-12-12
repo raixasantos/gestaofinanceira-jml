@@ -29,7 +29,8 @@ public class ProdutoDAO {
     private final String ALTERARQTD = "UPDATE \"Produto\" SET \"qtd\"=? WHERE \"codProd\"=?";
     private final String EXCLUIR = "DELETE FROM \"Produto\" WHERE \"codProd\"=?";
     
-    public Produto buscar(int codProd){
+    //@ requires 0 <= codProd;
+    public /*@ pure @*/ Produto buscar(int codProd){
         Produto p = null;
         try {
             con.conectar();
@@ -47,7 +48,11 @@ public class ProdutoDAO {
         }
         return p;
     }
-     
+    
+    //@ requires 0 <= p.getCodProd();
+    //@ requires 0.0 < p.getPreco();
+    //@ requires 0 <= p.getQtd();
+    //@ requires 0.0 <= p.getCustoPart();
     public void inserir(Produto p){
         try {
             con.conectar();
@@ -66,7 +71,7 @@ public class ProdutoDAO {
         }
     }
     
-    public ArrayList<Produto> relatorio(){
+    public /*@ pure @*/ ArrayList<Produto> relatorio(){
         ArrayList relProd = new ArrayList();
         try {
             con.conectar();
@@ -85,6 +90,8 @@ public class ProdutoDAO {
         return relProd;
     }
     
+    //@ requires 0 <= codProd;
+    //@ requires 0 <= novo;
     public void alterarCodProd(int codProd, int novo){
         try {
             con.conectar();
@@ -100,6 +107,8 @@ public class ProdutoDAO {
         }
     }
     
+    //@ requires 0 <= codProd;
+    //@ requires new Float(0) < novo;
     public void alterarPreco(int codProd, Float novo){
         try {
             con.conectar();
@@ -115,6 +124,7 @@ public class ProdutoDAO {
         }
     }
     
+    //@ requires 0 <= codProd;
     public void alterarDesc(int codProd, String novo){
         try {
             con.conectar();
@@ -130,6 +140,8 @@ public class ProdutoDAO {
         }
     }
     
+    //@ requires 0 <= codProd;
+    //@ requires 0.0 <= novo;
     public void alterarCusto(int codProd, float novo){
         try {
             con.conectar();
@@ -144,7 +156,9 @@ public class ProdutoDAO {
             e.printStackTrace();
         }
     }  
-
+    
+    //@ requires 0 <= codProd;
+    //@ requires 0 <= qtd;
     public void alterarQtd(int codProd, int qtd){
         try {
             con.conectar();
@@ -160,6 +174,7 @@ public class ProdutoDAO {
         }
     }  
     
+    //@ requires 0 <= codProd;
     public void excluir(int codProd){
         try {
             con.conectar();

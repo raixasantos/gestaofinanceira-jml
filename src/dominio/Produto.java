@@ -36,11 +36,9 @@ public class Produto {
         return codProd;
     }
     
-    /**
-     *@ requires 0 <= codProd;
-     *@ assignable this.codProd;
-     *@ ensures this.codProd == codProd;
-     */ 
+    //@ requires 0 <= codProd;
+    //@ assignable this.codProd;
+    //@ ensures this.codProd == codProd;
     public void setCodProd(int codProd) {
         this.codProd = codProd;
     }
@@ -49,11 +47,9 @@ public class Produto {
         return preco;
     }
     
-    /**
-     *@ requires 0.0 < preco;
-     *@ assignable this.preco;
-     *@ ensures this.preco == preco;
-     */ 
+    //@ requires 0.0 < preco;
+    //@ assignable this.preco;
+    //@ ensures this.preco == preco;
     public void setPreco(float preco) {
         this.preco = preco;
     }
@@ -62,11 +58,9 @@ public class Produto {
         return descricao;
     }
     
-    /**
-     *@ requires descricao.equals(null) == false;
-     *@ assignable this.descricao;
-     *@ ensures this.descricao.equals(descricao) == true;
-     */ 
+    //@ requires descricao.equals(null) == false;
+    //@ assignable this.descricao;
+    //@ ensures this.descricao.equals(descricao) == true;
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
@@ -75,11 +69,9 @@ public class Produto {
         return qtd;
     }
     
-    /**
-     *@ requires 0 <= qtd;
-     *@ assignable this.qtd;
-     *@ ensures this.qtd == qtd;
-     */ 
+    //@ requires 0 <= qtd;
+    //@ assignable this.qtd;
+    //@ ensures this.qtd == qtd;
     public void setQtd(int qtd) {
         this.qtd = qtd;
     }
@@ -88,11 +80,9 @@ public class Produto {
         return custoPart;
     }
     
-    /**
-     *@ requires 0.0 <= custoPart;
-     *@ assignable this.custoPart;
-     *@ ensures this.custoPart == custoPart;
-     */ 
+    //@ requires 0.0 <= custoPart;
+    //@ assignable this.custoPart;
+    //@ ensures this.custoPart == custoPart;
     public void setCustoPart(float custoPart) {
         this.custoPart = custoPart;
     }
