@@ -131,9 +131,9 @@ public class Produto {
   	
   	//@ requires 1 <= indice && 3 >= indice;
   	//@ ensures !(\result.equals(null));
-    //@ ensures (\exists int i; 1 <= i <= desconto.length; \result.equals(desconto[i]));
+    //@ ensures (\exists int i; 0 <= i && i < desconto.length; \result.equals(desconto[i]));
   	public String getDesconto(int indice) {
-  		return desconto[indice];
+  		return desconto[indice-1];
   	}
   	
   	public /*@ pure @*/ int getDescontoGanho() {
